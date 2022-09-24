@@ -17,7 +17,7 @@ const prisma = new PrismaClient({
 app.get('/games', async (request, response) => {
   const games = await prisma.game.findMany({
     include: {
-      _count: {
+      _count: { 
         select: {
           ads: true,
         }
@@ -34,7 +34,7 @@ app.post('/games/:id/ads', async (request, response) => {
 
   const ad = await prisma.ad.create({
     data: {
-      gameId,
+      gameId, 
       name: body.name,
       yearsPlaying: body.yearsPlaying,
       discord: body.discord,
