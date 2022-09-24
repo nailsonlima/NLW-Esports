@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, FormEvent } from 'react';
 import { GameController, MagnifyingGlassPlus, Check } from 'phosphor-react';
 
 import * as Dialog from "@radix-ui/react-dialog"
 import Input from './Form/Input';
 import * as Checkbox from "@radix-ui/react-checkbox"
 import * as ToggleGroup from '@radix-ui/react-toggle-group';
+import axios from 'axios';
 
 interface Game {
     id: string;
@@ -14,14 +15,43 @@ interface Game {
 export default function CreateAdBanner(){
 
     const [games, setGames] = useState<Game[]>([])
+    const [weekDays, setWeekdays] = useState<string[]>([])
+    const [useVoiceChannel, setUseVoiceChannel] = useState(false)
 
     useEffect(()=>{
-      fetch('http://localhost:3333/games')
-      .then(response => response.json())
-      .then(data =>{
-        setGames(data)
+      axios('http://localhost:3333/games').then(response =>{
+        setGames(response.data)
       })
     }, [])
+
+    async function handleCreateAd(event: FormEvent){
+      event.preventDefault()
+
+      const formData = new FormData(event.target as HTMLFormElement)
+      const data = Object.fromEntries(formData)
+
+      if(!data.name){
+        return;
+      }
+      
+      try{
+      axios.post(`http://localhost:3333/games/${data.game}/ads`,{
+      name: data.name,
+      yearsPlaying: Number(data.yearsPlaying),
+      discord: data.discord,
+      weekDays: weekDays.map(Number),
+      hourStart: data.hourStart,
+      hourEnd: data.hourEnd,
+      useVoiceChannel: useVoiceChannel
+      })
+      alert('Anúncio Publicado com sucesso')
+      }catch(err){
+        console.log(err)
+        alert("Erro ao criar anúncio")
+      }
+    }
+
+
     return(
         <Dialog.Portal>
             <Dialog.Overlay className="bg-black/60 inset-0 fixed"/>
@@ -31,7 +61,7 @@ export default function CreateAdBanner(){
             -translate-y-1/2 rounded-lg w-[480px] shadow-sm shadow-black/30">
               <Dialog.Title className="text-3xl font-black">Publique um anúncio</Dialog.Title>
 
-                <form className='mt-8 flex flex-col gap-4'>
+                <form onSubmit={handleCreateAd} className='mt-8 flex flex-col gap-4'>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="game" className='font-semibold'>Qual o Game?</label>
                     <select className='bg-zinc-900
@@ -41,8 +71,10 @@ export default function CreateAdBanner(){
                     placeholder:text-zinc-500
                     appearance-none
                     '
-                    id='game'>
-                    <option disabled selected value="">Selecione o Game que deseja jogar</option>
+                    id='game'
+                    name='game'
+                    defaultValue="">
+                    <option disabled value="">Selecione o Game que deseja jogar</option>
                     {games.map(game => {
                       return <option key={game.id} value={game.id}>{game.title}</option>
                     }) }
@@ -50,17 +82,17 @@ export default function CreateAdBanner(){
                   </div>
                   <div className="flex flex-col gap-2">
                     <label htmlFor="name'">Seu nome (ou nickname)</label>
-                    <Input id="name" type="text" placeholder='Como te chamam dentro do Game' />
+                    <Input name='name' id="name" type="text" placeholder='Como te chamam dentro do Game' />
                   </div>
 
                   <div className='grid grid-cols-2 gap-6'>
                       <div className='flex flex-col gap-2'>
                         <label htmlFor="yearsPlaying">Joga a quantos anos?</label>
-                        <Input id="yearsPlaying" type="number" placeholder='tudo bem ser ZERO!' />
+                        <Input name='yearsPlaying' id="yearsPlaying" type="number" placeholder='tudo bem ser ZERO!' />
                       </div>
                       <div className='flex flex-col gap-2'>
                         <label htmlFor="discord"></label>
-                        <Input id="discord" type="text" placeholder='Usuário#0000' />
+                        <Input name='discord' id="discord" type="text" placeholder='Usuário#0000' />
                       </div>
                   </div>
 
@@ -70,76 +102,87 @@ export default function CreateAdBanner(){
                         <ToggleGroup.Root
                         type="multiple" 
                         className='grid grid-cols-4 gap-2'
-                        onValueChange={console.log}
-                        >
-
+                        value={weekDays}
+                        onValueChange={setWeekdays}
                         
+                        >
                          <ToggleGroup.Item
                           value='0'
                           title='Domingo'
-                          className='w-8 h-8 rounded bg-zinc-900'
+                          className={`w-8 h-8 rounded ${weekDays.includes('0') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                            >
                             D
                             </ToggleGroup.Item>
                          <ToggleGroup.Item
                          value='1'
                            title='Segunda'
-                           className='w-8 h-8 rounded bg-zinc-900'
+                           className={`w-8 h-8 rounded ${weekDays.includes('1') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                            >
                             S
                             </ToggleGroup.Item>
                          <ToggleGroup.Item
                          value='2'
                            title='Terça'
-                           className='w-8 h-8 rounded bg-zinc-900'
+                           className={`w-8 h-8 rounded ${weekDays.includes('2') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                            >
                             T
                             </ToggleGroup.Item>
                          <ToggleGroup.Item
                          value='3'
                            title='Quarta'
-                           className='w-8 h-8 rounded bg-zinc-900'
+                           className={`w-8 h-8 rounded ${weekDays.includes('3') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                            >
                             Q
                             </ToggleGroup.Item>
                          <ToggleGroup.Item
                          value='4'
                            title='Quinta'
-                           className='w-8 h-8 rounded bg-zinc-900'
+                           className={`w-8 h-8 rounded ${weekDays.includes('4') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                            >
                             Q
                             </ToggleGroup.Item>
                          <ToggleGroup.Item
                          value='5'
                            title='Sexta'
-                           className='w-8 h-8 rounded bg-zinc-900'
+                           className={`w-8 h-8 rounded ${weekDays.includes('5') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                            >
                             S
                             </ToggleGroup.Item>
                          <ToggleGroup.Item
                            value='6'
                            title='Sabádo'
-                           className='w-8 h-8 rounded bg-zinc-900'
+                           className={`w-8 h-8 rounded ${weekDays.includes('6') ? 'bg-violet-500' : 'bg-zinc-900'}`}
                            >
+                            S
                             </ToggleGroup.Item>
                             </ToggleGroup.Root>
                     </div>
                     <div className='flex flex-col gap-1'>
                       <label htmlFor="hourtStart">Qual horario do dia?</label>
                       <div className='grid grid-cols-2 gap-2'>
-                        <Input id="hourStart" placeholder='De' type="time" />
-                        <Input id="hourEnd"placeholder='Ate' type="time" />
+                        <Input name="hourStart" id="hourStart" placeholder='De' type="time" />
+                        <Input name="hourEnd" id="hourEnd"placeholder='Ate' type="time" />
                       </div>
                     </div>
                   </div>
-                  <div className='mt-2 flex gap-2 text-sm items-center'>
-                    <Checkbox.Root className='w-6 h-6 p-1 rounded bg-zinc-900'>
+                  <label className='mt-2 flex gap-2 text-sm items-center'>
+                    <Checkbox.Root
+                    checked={useVoiceChannel}
+                    onCheckedChange={(checked)=>{
+                      if(checked === true){
+                        setUseVoiceChannel(true)
+                      }else{
+                        setUseVoiceChannel(false)
+                      }
+                    }}
+                    className='w-6 h-6 p-1 rounded bg-zinc-900'
+                    >
                         <Checkbox.Indicator>
                             <Check className='w-4 h-4 text-green-400'/>
                         </Checkbox.Indicator>
                     </Checkbox.Root>
                     Costumo me  conectar ao chat de voz!
-                  </div>
+                  </label>
                   <footer className='mt-4 flex justify-end gap-4'>
                     <Dialog.Close className='bg-zinc-500 px-5 h-12
                      rounded-md font-semibold hover:bg-zinc-600'>Cancelar
