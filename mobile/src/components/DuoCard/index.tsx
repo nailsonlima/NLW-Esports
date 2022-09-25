@@ -25,7 +25,7 @@ interface Props{
   onConnect: () => void;
 }
 
-export function DuoCard({data, onConnect} :Props) {
+export function DuoCard({data, onConnect} : Props) {
   return (
     <View style={styles.container}>
       <Duoinfo
@@ -46,7 +46,9 @@ export function DuoCard({data, onConnect} :Props) {
       colorValue={data.useVoiceChannel ? THEME.COLORS.SUCCESS : THEME.COLORS.ALERT }
       />
 
-      <TouchableOpacity style={styles.button} onPress={onConnect}>
+      <TouchableOpacity 
+        style={styles.button}
+        onPress={onConnect}>
         <GameController
         color={THEME.COLORS.TEXT}
         size={20}

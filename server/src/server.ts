@@ -34,7 +34,7 @@ app.post('/games/:id/ads', async (request, response) => {
 
   const ad = await prisma.ad.create({
     data: {
-      gameId, 
+      gameId,
       name: body.name,
       yearsPlaying: body.yearsPlaying,
       discord: body.discord,

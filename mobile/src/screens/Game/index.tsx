@@ -12,6 +12,7 @@ import { THEME } from '../../theme';
 import { GameParams } from '../../@types/navigation';
 import { Heading } from '../../components/Heading';
 import { DuoCard, DuoCardProps } from '../../components/DuoCard';
+import { DuoMatch } from '../../components/DuoMatch';
 
 export function Game() {
   
@@ -19,15 +20,23 @@ export function Game() {
   const navigation = useNavigation();
   const route = useRoute();
   const game = route.params as GameParams;
+  const [discordDuoSelected, setDiscordDuoSelected] = useState('')
 
   function handleGoBack(){
     navigation.goBack();
   }
-  useEffect(() => {
+
+  async function getDiscordUser(adsId: string) {
+    await fetch(`http://10.0.0.105:3333/ads/${adsId}/discord`)
+    .then(response => response.json())
+    .then(data => setDiscordDuoSelected(data.discord))
+  }
+
+useEffect(() => {
     fetch(`http://10.0.0.105:3333/games/${game.id}/ads`)
     .then(response => response.json())
     .then(data => setDuos(data))
-  })
+  },[])
 
 
   return (
@@ -39,8 +48,8 @@ export function Game() {
               name="chevron-thin-left"
               color={THEME.COLORS.CAPTION_300}
               size={20}
-              />
-            </TouchableOpacity>
+              />  
+            </TouchableOpacity> 
             <Image
             source={logoImg}
             style={styles.logo}
@@ -61,8 +70,9 @@ export function Game() {
           data={duos}
           keyExtractor={item => item.id}
           renderItem={({item}) => (
-            <DuoCard data={item} 
-            onConnect={()=>{}}
+            <DuoCard 
+            data={item} 
+            onConnect={()=>getDiscordUser(item.id)}
             />
           )}
           horizontal
@@ -74,6 +84,12 @@ export function Game() {
           )}
           />
           
+
+          <DuoMatch
+            onClose={()=>setDiscordDuoSelected('')}
+            visible={discordDuoSelected.length > 0}
+            discord={discordDuoSelected}
+          />
         </SafeAreaView>
     </Background>
   );
