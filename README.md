@@ -4,9 +4,18 @@
     Foi realmente uma experiência incrivel participar da NLW, excelentes ditadas e conteúdo
     de relevância para o mercado!!!
 </div>
+<hr/>
+<div>
+    <p>WEB</p>
+    <img width="80%" src="./web/assets/to-readme/pag-inicial.png"/>
+</div>
 
-<img width="100" src="./mobile/assets/to-readme/pag-inicial.jpg"/>
-<img width="100" src="./web/assets/to-readme/pag-inicial.png"/>
+<div>
+    <p>MOBILE</p>
+    <img width="30%" src="./mobile/assets/to-readme/pag-inicial.jpg"/>
+</div>
+
+
 
 ## Intuito
 <div>
@@ -31,7 +40,7 @@
 </div>
 
 ## WEB
-<img width="100" src="./web/assets/to-readme/basic-video.gif"/>
+<img width="100%" src="./web/assets/to-readme/basic-video.gif"/>
 <img width="100" src="./web/assets/to-readme/ads.png"/>
 
 
