@@ -35,8 +35,8 @@
 ## Descrição
 <div>
     Foi decidido dividir as funcionalidades para mobile e web,
-    assim a parte web ficou com a parte de cadastrar novos anúncios e 
-    apenas no mobile a questão de realizar a conexão de fato!
+    assim a parte web ficou com a questão de cadastrar novos anúncios!
+    E o mobile ficou responsável por unir os duos!
 </div>
 
 ## WEB
