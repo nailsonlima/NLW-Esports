@@ -32,4 +32,8 @@
 
 ## WEB
 
+
+
 ## MOBILE
+
+<img width="100" src="./mobile/assets/to-readme/rolagem-simples.gif"/>
