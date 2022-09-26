@@ -41,7 +41,7 @@
 
 ## WEB
 <img width="100%" src="./web/assets/to-readme/basic-video.gif"/>
-<img width="100" src="./web/assets/to-readme/ads.png"/>
+<img width="100%" src="./web/assets/to-readme/ads.png"/>
 
 
 
