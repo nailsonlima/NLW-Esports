@@ -31,9 +31,16 @@
 </div>
 
 ## WEB
+<img width="100" src="./web/assets/to-readme/basic-video.gif"/>
+<img width="100" src="./web/assets/to-readme/ads.png"/>
+
+
 
 
 
 ## MOBILE
 
 <img width="100" src="./mobile/assets/to-readme/rolagem-simples.gif"/>
+<img width="100" src="./mobile/assets/to-readme/busca-duo.gif"/>
+<img width="100" src="./mobile/assets/to-readme/game-com-ads.jpg"/>
+<img width="100" src="./mobile/assets/to-readme/game-sem-ads.jpg"/>
