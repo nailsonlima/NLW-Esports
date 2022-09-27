@@ -1,4 +1,4 @@
-# ESPORTS NLW 🎮
+# *ESPORTS NLW* 🎮
 <div>
     <p>Aplicação feita com a equipe da rocketseat</p>
     Foi realmente uma experiência incrivel participar da NLW, excelentes ditadas e conteúdo
@@ -49,7 +49,17 @@
 
 ## 🔴MOBILE
 
-<img width="100" src="./mobile/assets/to-readme/rolagem-simples.gif"/>
-<img width="100" src="./mobile/assets/to-readme/busca-duo.gif"/>
-<img width="100" src="./mobile/assets/to-readme/game-com-ads.jpg"/>
-<img width="100" src="./mobile/assets/to-readme/game-sem-ads.jpg"/>
+<div>
+    <div>
+        <p>Rolagem simples pela nossa aplicação</p>
+        <img width="45%" src="./mobile/assets/to-readme/rolagem-simples.gif"/>
+        <p>Busca por duo, Match!😊</p>
+        <img width="45%" src="./mobile/assets/to-readme/busca-duo.gif"/></br>
+    </div>
+
+<p>Obs: Bordas pretas por detalhe de gravação, não aparecem no dispositivo</p>
+<p>A seguir, game com e sem anúncio públicado! OBRIGADO PELA ATENÇÃO!!!</p>
+<img width="45%" src="./mobile/assets/to-readme/game-sem-ads.jpg"/>
+<img width="45%" src="./mobile/assets/to-readme/game-com-ads.jpg"/>
+</div>
+<p>🎮✔</p>
