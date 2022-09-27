@@ -58,8 +58,8 @@
     </div>
 
 <p>Obs: Bordas pretas por detalhe de gravação, não aparecem no dispositivo</p>
-<p>A seguir, game com e sem anúncio públicado! OBRIGADO PELA ATENÇÃO!!!</p>
+<p>A seguir, game sem e com anúncio públicado: </p>
 <img width="45%" src="./mobile/assets/to-readme/game-sem-ads.jpg"/>
 <img width="45%" src="./mobile/assets/to-readme/game-com-ads.jpg"/>
 </div>
-<p>🎮✔</p>
+<p>THANKS :)</p>
