@@ -1,4 +1,4 @@
-# ESPORTS NLW
+# ESPORTS NLW 🎮
 <div>
     <p>Aplicação feita com a equipe da rocketseat</p>
     Foi realmente uma experiência incrivel participar da NLW, excelentes ditadas e conteúdo
@@ -17,12 +17,12 @@
 
 
 
-## Intuito
+## 🎈Intuito
 <div>
     Unir pessoas que estejam procurando um duo, ou apenas alguém para jogar casualmente!
 </div>
 
-## Funcionalidades
+## ❗Funcionalidades
 <div>
     <ul>
     <li>Buscar os games do backend e carregar as imagens da Twitch</li>
@@ -32,14 +32,14 @@
     </ul>
 </div>
 
-## Descrição
+## 🔴Descrição
 <div>
     Foi decidido dividir as funcionalidades para mobile e web,
     assim a parte web ficou com a questão de cadastrar novos anúncios!
     E o mobile ficou responsável por unir os duos!
 </div>
 
-## WEB
+## 🔵WEB
 <img width="100%" src="./web/assets/to-readme/basic-video.gif"/>
 <img width="100%" src="./web/assets/to-readme/ads.png"/>
 
@@ -47,7 +47,7 @@
 
 
 
-## MOBILE
+## 🔴MOBILE
 
 <img width="100" src="./mobile/assets/to-readme/rolagem-simples.gif"/>
 <img width="100" src="./mobile/assets/to-readme/busca-duo.gif"/>
